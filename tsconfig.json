@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    // "noImplicitAny": true,
+
+    "target": "es2015",
+    "module": "commonjs",
+    "jsx": "react",
+    "jsxFactory": "h",
+    // "allowJs": true,
+    "types": ["jasmine"],
+    "typeRoots": ["../node_modules/@types"]
+  }
+}
