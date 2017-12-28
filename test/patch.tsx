@@ -64,10 +64,8 @@ describe('diff and patch', () => {
     expect(elm.childNodes[2].nodeName.toLowerCase()).toBe('ul')
     expect(elm.childNodes[3].nodeName.toLowerCase()).toBe('a')
     render({ el: el, newVNode: newNode, oldVNode: oldNode })
-    // console.log(el)
-    // // elm = el.children[0]
-    // expect(elm.childNodes.length).toBe(2)
-    // expect(elm.childNodes[0].nodeName.toLowerCase()).toBe('p')
-    // expect(elm.childNodes[1].nodeName.toLowerCase()).toBe('ul')
+    expect(elm.childNodes.length).toBe(2)
+    expect(elm.childNodes[0].nodeName.toLowerCase()).toBe('p')
+    expect(elm.childNodes[1].nodeName.toLowerCase()).toBe('ul')
   })
 })

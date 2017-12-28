@@ -20,6 +20,7 @@ function createElm(vnode: VNode): Node {
     return el
   }
   const el = document.createElement(vnode.type)
+  // console.log(vnode.type, el)
   setProps(el, vnode.props)
   vnode.el = el
   vnode.children.map(createElm).forEach(child => el.appendChild(child))

@@ -75,7 +75,7 @@ function patchChildren(newCh: Array<VNode>, oldCh: Array<VNode>, parentElm: Node
         let vnodeToMove = oldCh[idxInOld]
         if (sameVnode(newStartNode, vnodeToMove)) {
           patchNode(newStartNode, vnodeToMove)
-          oldCh[oldStartIdx] = undefined //移动后删除
+          oldCh[idxInOld] = undefined //移动后删除
           parentElm.insertBefore(vnodeToMove.el, oldStartNode.el)
         } else {
           // key相同但是不同element
@@ -97,7 +97,7 @@ function patchChildren(newCh: Array<VNode>, oldCh: Array<VNode>, parentElm: Node
 }
 function removeNodes(oldCh: Array<VNode>, start: number, end: number) {
   for (let i = start; i <= end; i++) {
-    if (isDef(oldCh[i].el)) removeNode(oldCh[i].el)
+    if (isDef(oldCh[i])) removeNode(oldCh[i].el)
   }
 }
 function removeNode(el: Node) {
@@ -134,6 +134,7 @@ function patchProps(newVNode: VNode, oldVNode: VNode) {
   })
   Object.keys(oldProps).map(key => {
     if (isDef(newProps[key])) {
+      // console.log(elm, key)
       setProp(elm, key, newProps[key])
     } else {
       elm.removeAttribute(key)
@@ -141,9 +142,6 @@ function patchProps(newVNode: VNode, oldVNode: VNode) {
   })
 }
 function patchNode(newVNode: VNode, oldVNode: VNode) {
-  if (newVNode === oldVNode) {
-    return
-  }
   const elm = (newVNode.el = oldVNode.el)
   const oldCh = oldVNode.children
   const newCh = newVNode.children
@@ -165,7 +163,6 @@ function patchNode(newVNode: VNode, oldVNode: VNode) {
   patchProps(newVNode, oldVNode)
 }
 function render({ el, newVNode, oldVNode }: render) {
-  console.log(newVNode)
   if (isUndef(oldVNode)) {
     el.appendChild(createElm(newVNode))
     // console.log(newVNode)

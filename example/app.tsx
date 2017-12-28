@@ -105,7 +105,7 @@ const newNode = (
     <ul />
   </div>
 ) as VNode
-console.log(oldNode)
-const el = document.createElement('div')
+console.log(oldNode, newNode)
+const el = document.getElementById('app')
 r({ el, newVNode: oldNode })
 r({ el, newVNode: newNode, oldVNode: oldNode })

@@ -17,21 +17,7 @@ function flatten(children) {
 function h(type: string, props: props, ...children: Array<VNode>): VNode {
   props = props || {}
   const key = props.key
-  console.log(flatten(children))
-  children = flatten(children).map(
-    item =>
-      isText(item)
-        ? {
-            type: 'text',
-            children: [],
-            props: {},
-            key: key,
-            el: undefined,
-            text: item
-          }
-        : item
-  )
-  console.log(children)
+  children = flatten(children).map(item => (isText(item) ? { type: 'text', props: {}, key, children: [], text: item, el: undefined } : item))
   return {
     type,
     props,
